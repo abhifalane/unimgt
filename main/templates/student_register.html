@@ -1,0 +1,40 @@
+{% include 'partials/navbar.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        body { font-family: Arial; padding: 30px; }
+        input, select, button { padding: 8px; margin: 8px 0; width: 300px; }
+    </style>
+</head>
+<body>
+    <h2>Student Registration</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Full Name" required><br>
+        <input type="text" name="father_name" placeholder="Father's Name" required><br>
+        <input type="text" name="roll_no" placeholder="Roll Number" required><br>
+        <input type="text" name="mobile" placeholder="Mobile Number" required><br>
+        <input type="text" name="college" placeholder="College Name" required><br>
+        <input type="date" name="dob" required><br>
+        <label>Upload Passport Photo:</label><br>
+        <input type="file" name="photo" accept="image/*" required><br>
+
+        <div id="subjects">
+            <input type="text" name="subjects[]" placeholder="Subject 1" required><br>
+        </div>
+        <button type="button" onclick="addSubject()">+ Add Subject</button><br><br>
+
+        <button type="submit">Register Student</button>
+    </form>
+
+    <script>
+        function addSubject() {
+            const div = document.createElement('div');
+            div.innerHTML = `<input type="text" name="subjects[]" placeholder="Another Subject" required><br>`;
+            document.getElementById('subjects').appendChild(div);
+        }
+    </script>
+</body>
+</html>

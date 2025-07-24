@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Raja Mahendra Pratap Singh University - Dashboard</title>
+  
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #f4f4f4;
+      padding: 20px;
+      height: 100vh;
+      width: 220px;
+      position: fixed;
+    }
+    nav a {
+      display: block;
+      padding: 12px;
+      margin: 10px 0;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      border-left: 5px solid transparent;
+    }
+    nav a:hover {
+      background-color: #ddd;
+      border-left: 5px solid #004080;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+ <img src="{% static 'images/logo.jpg' %}" alt="University Logo" width="80" height="70">
+  
+</header>
+{% include 'partials/navbar.html' %}
+
+<nav>
+{% if request.session.student_id %}
+    <a href="{% url 'student_logout' %}">🚪 Logout</a>
+{% endif %}
+  <a href="{% url 'admin_login' %}">🧑‍💼 Admin Login</a>
+  <a href="{% url 'student_register' %}">📝 Student Registration</a>
+  <a href="{% url 'student_login' %}">🔐 Student Login</a>
+  <a href="{% url 'student_admit_card' %}">🎟️ Download Admit Card</a>
+  <a href="{% url 'student_result' %}">📄 Result</a>
+  <a href="{% url 'user_list' %}">
+    <button style="background:#008000; color:white; padding:8px 14px; border-radius:6px; border:none;">
+        👤 Manage Users
+    </button>
+</a>
+</nav>
+
+<div class="main">
+  <h2>Welcome to the Dashboard</h2>
+  <p>Select an option from the sidebar to proceed.</p>
+</div>
+<div style="text-align:right; margin-bottom: 15px;">
+    <a href="{% url 'allocate_user' %}">
+        <button style="background:#004080; color:white; padding:8px 14px; border-radius:6px; border:none;">
+            ➕ Allocate Entry User
+        </button>
+    </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result - {{ student.roll_no }}</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        .result-card {
+            border: 2px solid #004080;
+            padding: 30px;
+            width: 800px;
+            margin: auto;
+            background: #fdfdfd;
+        }
+        h1, h3 { text-align: center; color: #004080; }
+        .photo {
+            float: right;
+            height: 120px;
+            width: 100px;
+            object-fit: cover;
+            border: 2px solid #ccc;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #888;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        .result-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: {% if result_status == "PASS" %}green{% else %}red{% endif %};
+        }
+        .print-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .print-btn button {
+            background: #004080;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="result-card">
+    <h1>RAJA MAHENDRA PRATAP SINGH STATE UNIVERSITY</h1>
+    <h3>Result Sheet - {{ student.roll_no }}</h3>
+
+    <img class="photo" src="{{ student.photo.url }}" alt="Student Photo">
+
+    <table>
+        <tr><th>Name</th><td>{{ student.name }}</td></tr>
+        <tr><th>Father's Name</th><td>{{ student.father_name }}</td></tr>
+        <tr><th>College</th><td>{{ student.college }}</td></tr>
+    </table>
+
+    <h3>Subject-wise Marks</h3>
+    <table>
+        <tr>
+            <th>S.No</th>
+            <th>Subject</th>
+            <th>Marks</th>
+            <th>Status</th>
+        </tr>
+        {% for s in subjects %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ s.subject_name }}</td>
+            <td>{{ s.marks }}</td>
+            <td>
+                {% if s.marks >= 33 %}
+                    ✅
+                {% else %}
+                    ❌
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="result-footer">
+        RESULT: {{ result_status }} | Total: {{ total }} | Percentage: {{ percentage }}%
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">🖨️ Download / Print Result</button>
+    </div>
+</div>
+
+</body>
+</html>

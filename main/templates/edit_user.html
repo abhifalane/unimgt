@@ -1,0 +1,13 @@
+{% include 'partials/navbar.html' %}
+<h2>Edit User: {{ user.username }}</h2>
+
+<form method="POST">{% csrf_token %}
+    Username: <input name="username" value="{{ user.username }}" required><br><br>
+    Password: <input name="password" placeholder="(leave blank to keep old password)"><br><br>
+    Role:
+    <select name="role">
+        <option value="admin" {% if profile.role == 'admin' %}selected{% endif %}>Admin</option>
+        <option value="entry" {% if profile.role == 'entry' %}selected{% endif %}>Entry</option>
+    </select><br><br>
+    <button type="submit">Save Changes</button>
+</form>

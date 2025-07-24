@@ -1,0 +1,20 @@
+{% include 'partials/navbar.html' %}
+<h2>👤 User List</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.userprofile.role }}</td>
+            <td>
+                <a style="color: rgb(89, 42, 165);" href="{% url 'edit_user' user.id %}">Edit</a> |
+                <a style="color: rgb(230, 25, 25);" href="{% url 'delete_user' user.id %}" onclick="return confirm('Are you sure to delete this user?')">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,21 @@
+{% include 'partials/navbar.html' %}
+<h2>Admin Dashboard</h2>
+
+<div style="text-align:right; margin-bottom: 15px;">
+    <a href="{% url 'allocate_user' %}">
+        <button style="background:#004080; color:white; padding:8px 14px; border-radius:6px; border:none;">
+            ➕ Allocate Entry User
+        </button>
+    </a>
+</div>
+
+<table>
+<tr><th>Roll No</th><th>Name</th><th>Action</th></tr>
+{% for student in students %}
+<tr>
+    <td>{{ student.roll_no }}</td>
+    <td>{{ student.name }}</td>
+    <td><a href="{% url 'add_marks' student.id %}">Enter Marks</a></td>
+</tr>
+{% endfor %}
+</table>

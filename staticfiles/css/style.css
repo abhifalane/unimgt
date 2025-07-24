@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #222;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #004080;
+}
+
+a {
+    color: #0674e2;
+    text-decoration: none;
+    text-shadow: 2ch;
+}
+
+button, input[type="submit"] {
+    background: #004080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+    background: #002f5f;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 6px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+table th {
+    background: #004080;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.notice {
+    color: red;
+    font-weight: bold;
+}

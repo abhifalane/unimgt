@@ -1,0 +1,79 @@
+{% include 'partials/navbar.html' %}
+
+<style>
+  .dash-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .dash-container h2 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 20px;
+  }
+  .profile-photo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 120px;
+    height: 140px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .info-table td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .actions {
+    text-align: center;
+  }
+  .actions a {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background: #0077b6;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .actions a:hover {
+    background: #005f8a;
+  }
+</style>
+
+<div class="dash-container">
+  <h2>Welcome, {{ student.name }}</h2>
+  <img class="profile-photo" src="{{ student.photo.url }}" alt="Photo">
+
+  <table class="info-table">
+    <tr><td><strong>Roll Number:</strong></td><td>{{ student.roll_no }}</td></tr>
+    <tr><td><strong>Father's Name:</strong></td><td>{{ student.father_name }}</td></tr>
+    <tr><td><strong>College:</strong></td><td>{{ student.college }}</td></tr>
+    <tr><td><strong>DOB:</strong></td><td>{{ student.dob }}</td></tr>
+    <tr>
+      <td><strong>Subjects:</strong></td>
+      <td>
+        <ul>
+          {% for s in subjects %}
+            <li>{{ s.subject_name }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <div class="actions">
+    <a href="{% url 'student_admit_card' %}">Download Admit Card</a>
+    <a href="{% url 'student_result' %}">View Result</a>
+    <a href="{% url 'student_logout' %}">Logout</a>
+  </div>
+</div>

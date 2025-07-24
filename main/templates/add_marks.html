@@ -1,0 +1,16 @@
+<h2>Enter Marks for {{ student.name }} ({{ student.roll_no }})</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tr><th>Subject</th><th>Marks</th></tr>
+        {% for sub in subjects %}
+        <tr>
+            <td>{{ sub.subject_name }}</td>
+            <td>
+                <input type="number" name="marks_{{ sub.id }}" value="{{ sub.marks|default:0 }}" required>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Save Marks</button>
+</form>

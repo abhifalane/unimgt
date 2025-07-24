@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admit Card - {{ student.roll_no }}</title>
+    <style>
+        body { font-family: 'Arial'; margin: 0; padding: 40px; }
+        .admit-card {
+            border: 3px solid #004080;
+            padding: 30px;
+            width: 800px;
+            margin: auto;
+            background: #fdfdfd;
+        }
+        h1, h3 { text-align: center; color: #004080; }
+        .photo {
+            float: right;
+            border: 2px solid #ccc;
+            height: 120px;
+            width: 100px;
+            object-fit: cover;
+        }
+        .info, .subjects {
+            margin-top: 30px;
+        }
+        .info table, .subjects table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #aaa;
+        }
+        .print-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .print-btn button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #004080;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="admit-card">
+    <h1>RAJA MAHENDRA PRATAP SINGH STATE UNIVERSITY, ALIGARH</h1>
+    <h3>ADMIT CARD</h3>
+
+    <img class="photo" src="{{ student.photo.url }}" alt="Student Photo">
+
+    <div class="info">
+        <table>
+            <tr><th>Name</th><td>{{ student.name }}</td></tr>
+            <tr><th>Father's Name</th><td>{{ student.father_name }}</td></tr>
+            <tr><th>Roll Number</th><td>{{ student.roll_no }}</td></tr>
+            <tr><th>Mobile</th><td>{{ student.mobile }}</td></tr>
+            <tr><th>College</th><td>{{ student.college }}</td></tr>
+            <tr><th>Date of Birth</th><td>{{ student.dob }}</td></tr>
+        </table>
+    </div>
+
+    <div class="subjects">
+        <h3>Subjects</h3>
+        <table>
+            <tr><th>S.No</th><th>Subject Name</th></tr>
+            {% for s in subjects %}
+            <tr><td>{{ forloop.counter }}</td><td>{{ s.subject_name }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">🖨️ Download / Print Admit Card</button>
+    </div>
+    <div style="text-align:right;">
+        <a href="{% url 'student_logout' %}"><button>Logout</button></a>
+    </div>
+</div>
+
+</body>
+</html>

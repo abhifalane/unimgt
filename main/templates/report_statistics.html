@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports & Statistics</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        select, button { padding: 10px; margin: 10px 0; width: 300px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Class-Wise Reports & Statistics</h1>
+    <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+
+    <form method="GET" action="{% url 'report_statistics' %}">
+        <label>Select Class:</label><br>
+        <select name="class_id" required>
+            <option value="">-- Select Class --</option>
+            {% for c in classes %}
+                <option value="{{ c.id }}" {% if selected_class and selected_class.id == c.id %}selected{% endif %}>
+                    {{ c.program.name }} - {{ c.class_name }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Get Report</button>
+    </form>
+
+    {% if selected_class %}
+        <h2>Class: {{ selected_class.program.name }} - {{ selected_class.class_name }}</h2>
+        <p><strong>Total Students:</strong> {{ total_students }}</p>
+        <p><strong>Passed:</strong> {{ pass_count }}</p>
+        <p><strong>Failed:</strong> {{ fail_count }}</p>
+        <p><strong>Average Percentage:</strong> {{ avg_percentage }}%</p>
+        {% if topper %}
+            <p><strong>Topper:</strong> {{ topper.full_name }} ({{ topper.roll_number }}) — {{ highest_percentage }}%</p>
+        {% endif %}
+
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Roll Number</th>
+                <th>Total Marks</th>
+                <th>Max Marks</th>
+                <th>Percentage</th>
+                <th>Status</th>
+            </tr>
+            {% for s in student_data %}
+                <tr>
+                    <td>{{ s.student.full_name }}</td>
+                    <td>{{ s.student.roll_number }}</td>
+                    <td>{{ s.total }}</td>
+                    <td>{{ s.max_marks }}</td>
+                    <td>{{ s.percentage }}%</td>
+                    <td>{{ s.status }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>

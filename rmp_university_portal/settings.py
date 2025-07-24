@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tp2vr!wua*@^qle4m&czr*f5ius$^&9-qrp_7nx&^%r6!0f3f$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+DEBUG =False
 
 ALLOWED_HOSTS = ['192.168.31.125']
 
